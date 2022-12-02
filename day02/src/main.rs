@@ -7,8 +7,18 @@ fn main() -> Result<()> {
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let rounds: Vec<&str> = contents.split('\n').collect();
-    let mut my_total_score = 0;
     
+    
+    let my_total_score = strategy_part_1(rounds);
+    
+    println!("My total score is {}", my_total_score);
+
+    Ok(())
+
+}
+
+fn strategy_part_1(rounds: Vec<&str>) -> i32 {
+    let mut my_total_score = 0;
     for round in rounds {
         let hands: Vec<&str> = round.split(' ').collect();
         let opponent_hand = hands[0];
@@ -54,9 +64,5 @@ fn main() -> Result<()> {
 
         my_total_score += my_score;
     }
-    
-    println!("My total score is {}", my_total_score);
-
-    Ok(())
-
+    my_total_score
 }

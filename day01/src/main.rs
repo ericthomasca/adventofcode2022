@@ -25,9 +25,15 @@ fn main() -> Result<()> {
     calorie_totals.sort_by(|a, b| b.cmp(a));
     let top_three_elves = &calorie_totals[..3];
     let top_elves_total: i32 = top_three_elves.iter().sum();
-    
-    println!("The elf carrying the most calories is carrying {:?} calories.", calorie_totals[0]);
-    println!("The three elves carrying the most calories are carrying {:?} calories.", top_elves_total);
+
+    println!(
+        "The elf carrying the most calories is carrying {:?} calories.",
+        calorie_totals[0]
+    );
+    println!(
+        "The three elves carrying the most calories are carrying {:?} calories.",
+        top_elves_total
+    );
 
     Ok(())
 }

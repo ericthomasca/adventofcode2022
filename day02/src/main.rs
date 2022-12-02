@@ -3,85 +3,60 @@ use std::io::prelude::*;
 use std::io::Result;
 
 fn main() -> Result<()> {
-    let mut file = File::open("test_input.txt")?;
+    let mut file = File::open("day02_input.txt")?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
-
     let rounds: Vec<&str> = contents.split('\n').collect();
-
-    let mut player_1_total_score = 0;
-    let mut player_2_total_score = 0;
-
+    let mut my_total_score = 0;
+    
     for round in rounds {
         let hands: Vec<&str> = round.split(' ').collect();
-        let player_1_hand = hands[0];
-        let player_2_hand = hands[1];
+        let opponent_hand = hands[0];
+        let my_hand = hands[1];
+        let mut my_score = 0;
+        let opponent_rock = "A";
+        let opponent_paper = "B";
+        let opponent_scissors = "C";
+        let my_rock = "X";
+        let my_paper = "Y";
+        let my_scissors = "Z";
 
-        let mut player_1_score = 0;
-        let mut player_2_score = 0;
-
-        if player_1_hand == "A" && player_2_hand == "X" {
-            player_1_score += 1;
-            player_2_score += 1;
-            player_1_score += 3;
-            player_2_score += 3;
+        if opponent_hand == opponent_rock && my_hand == my_rock {
+            my_score += 4;
         }
-        else if player_1_hand == "A" && player_2_hand == "Y" {
-            player_1_score += 1;
-            player_2_score += 2;
-            player_1_score += 0;
-            player_2_score += 6;
+        else if opponent_hand == opponent_rock && my_hand == my_paper {
+            my_score += 8;
         }
-        else if player_1_hand == "A" && player_2_hand == "Z" {
-            player_1_score += 1;
-            player_2_score += 3;
-            player_1_score += 6;
-            player_2_score += 0;
+        else if opponent_hand == opponent_rock && my_hand == my_scissors {
+            my_score += 3;
         }
-        else if player_1_hand == "B" && player_2_hand == "X" {
-            player_1_score += 2;
-            player_2_score += 1;
-            player_1_score += 6;
-            player_2_score += 0;
+        else if opponent_hand == opponent_paper && my_hand == my_rock {
+            my_score += 1;
         }
-        else if player_1_hand == "B" && player_2_hand == "Y" {
-            player_1_score += 2;
-            player_2_score += 2;
-            player_1_score += 3;
-            player_2_score += 3;
+        else if opponent_hand == opponent_paper && my_hand == my_paper {
+            my_score += 5;
         }
-        else if player_1_hand == "B" && player_2_hand == "Z" {
-            player_1_score += 2;
-            player_2_score += 3;
-            player_1_score += 0;
-            player_2_score += 6;
+        else if opponent_hand == opponent_paper && my_hand == my_scissors {
+            my_score += 9;
         }
-        else if player_1_hand == "C" && player_2_hand == "X" {
-            player_1_score += 3;
-            player_2_score += 1;
-            player_1_score += 6;
-            player_2_score += 0;
+        else if opponent_hand == opponent_scissors && my_hand == my_rock {
+            my_score += 7;
         }
-        else if player_1_hand == "C" && player_2_hand == "Y" {
-            player_1_score += 3;
-            player_2_score += 2;
-            player_1_score += 6;
-            player_2_score += 0;
+        else if opponent_hand == opponent_scissors && my_hand == my_paper {
+            my_score += 2;
         }
-        else if player_1_hand == "C" && player_2_hand == "Z" {
-            player_1_score += 3;
-            player_2_score += 3;
-            player_1_score += 3;
-            player_2_score += 3;
+        else if opponent_hand == opponent_scissors && my_hand == my_scissors {
+            my_score += 6;
         }
         else {
             println!("Problem mathing hand")
         }
 
-
-        println!("{}", player_1_score);
-        println!("{}", player_2_score);
+        my_total_score += my_score;
     }
+    
+    println!("My total score is {}", my_total_score);
 
     Ok(())
+
 }

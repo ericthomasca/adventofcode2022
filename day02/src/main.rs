@@ -7,7 +7,13 @@ fn main() -> Result<()> {
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
 
-    println!("{}", contents);
+    let rounds: Vec<&str> = contents.split('\n').collect();
+
+    for round in rounds {
+        let player: Vec<&str> = round.split(" ").collect();
+        println!("{:?}", player);
+    }
+
 
     Ok(())
 }

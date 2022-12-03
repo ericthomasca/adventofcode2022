@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 use std::fs::File;
 use std::io::prelude::*;
 use std::io::Result;
@@ -24,7 +23,7 @@ fn main() -> Result<()> {
     Ok(())
 }
 
-fn part_1_priority_sum(elves: &Vec<&str>) -> i32 {
+fn part_1_priority_sum(elves: &Vec<&str>) -> usize {
     let item_reference = create_item_reference();
     let mut item_priority_total = 0;
     for elf in elves {
@@ -45,15 +44,14 @@ fn part_1_priority_sum(elves: &Vec<&str>) -> i32 {
         items_in_both.sort();
         items_in_both.dedup();
 
-        let common_item = items_in_both[0];
-        let common_item_priority = item_reference.get(common_item).expect("Item not found");
-
+        let common_item = *items_in_both[0];
+        let common_item_priority = item_reference.iter().position(|&r| r == common_item).unwrap() + 1;
         item_priority_total += common_item_priority;
     }
     item_priority_total
 }
 
-fn part_2_priority_sum(elves: &[&str]) -> i32 {
+fn part_2_priority_sum(elves: &[&str]) -> usize {
     let item_reference = create_item_reference();
     let mut item_priority_total = 0;
     let badge_group_chunks = elves.chunks(3);
@@ -79,21 +77,19 @@ fn part_2_priority_sum(elves: &[&str]) -> i32 {
         }
         items_in_all.sort();
         items_in_all.dedup();
-        let common_item = items_in_all[0];
-        let common_item_priority = item_reference.get(common_item).expect("Item not found");
+        let common_item = *items_in_all[0];
+        let common_item_priority = item_reference.iter().position(|&r| r == common_item).unwrap() + 1;
         item_priority_total += common_item_priority;
     }
     item_priority_total
 }
 
-fn create_item_reference() -> HashMap<char, i32> {
-    let mut item_reference: HashMap<char, i32> = HashMap::new();
+fn create_item_reference() -> Vec<char> {
+    let mut item_reference: Vec<char> = Vec::new();
     let binding = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".to_string();
-    let keys = binding.chars();
-    let mut reference_value = 1;
-    for key in keys {
-        item_reference.insert(key, reference_value);
-        reference_value += 1;
+    let items = binding.chars();
+    for item in items {
+        item_reference.push(item);
     }
     item_reference
 }

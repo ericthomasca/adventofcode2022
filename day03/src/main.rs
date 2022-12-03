@@ -45,7 +45,11 @@ fn part_1_priority_sum(elves: &Vec<&str>) -> usize {
         items_in_both.dedup();
 
         let common_item = *items_in_both[0];
-        let common_item_priority = item_reference.iter().position(|&r| r == common_item).unwrap() + 1;
+        let common_item_priority = item_reference
+            .iter()
+            .position(|&r| r == common_item)
+            .unwrap()
+            + 1;
         item_priority_total += common_item_priority;
     }
     item_priority_total
@@ -78,7 +82,11 @@ fn part_2_priority_sum(elves: &[&str]) -> usize {
         items_in_all.sort();
         items_in_all.dedup();
         let common_item = *items_in_all[0];
-        let common_item_priority = item_reference.iter().position(|&r| r == common_item).unwrap() + 1;
+        let common_item_priority = item_reference
+            .iter()
+            .position(|&r| r == common_item)
+            .unwrap()
+            + 1;
         item_priority_total += common_item_priority;
     }
     item_priority_total

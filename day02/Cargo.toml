@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 authors = ["Eric Thomas <eric@ericthomas.ca>"]
 description = "Advent of Code 2022 - Day 2"
-readme = "../README.md"
+readme = "README.md"
 repository = "https://github.com/ericthomasca/adventofcode2022/"
 license = "MIT"
 

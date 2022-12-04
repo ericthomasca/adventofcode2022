@@ -1,0 +1,13 @@
+[package]
+name = "day04"
+version = "0.1.0"
+edition = "2021"
+authors = ["Eric Thomas <eric@ericthomas.ca>"]
+description = "Advent of Code 2022 - Day 4"
+readme = "../README.md"
+repository = "https://github.com/ericthomasca/adventofcode2022/"
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
